@@ -22,7 +22,7 @@ const TeamList = ({ teams, onDragStart, onDragOver, onDrop, onDragLeave}) => {
                         <tr className={"dropzone"} onDragOver={(event )=> onDragOver(event)} style={rowColor} key={team.name}>
                             <td className={"dropzone"}>{index + 1}</td>
                             <td className={"dropzone something"}
-                                onDragStart={event => onDragStart(event)}
+                                onDragStart={(e) => onDragStart(event)}
                                 onDrop={(event )=> onDrop(event)}
                                 onDragLeave={(event )=> onDragLeave(event)}
                                 draggable={"true"}

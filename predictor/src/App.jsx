@@ -13,13 +13,16 @@ function App() {
             .then(res => {
                 setAllTeams(res.data)
             })
-    },[])
+    }, [])
 
-    const onDragStart = (event) => {
+    const onDragStart = (e, index) => {
         console.log(`Drag started on ${event.target.textContent}`);
-        event.target.style = {
-            opacity: '70%'
-        }
+        e.target.style.opacity = '70%'
+        let payload = JSON.stringify({
+            position: index,
+            teamName: e.target.textContent
+        });
+        e.dataTransfer.setData("application/json", payload);
     }
 
     const onDragOver = (event) => {
@@ -39,6 +42,8 @@ function App() {
         } else {
             console.log(`Incorrect dropzone ${event.target.textContent}`);
         }
+        let payload = event.dataTransfer.getData("application/json");
+        console.log(payload);
     }
 
   return (
