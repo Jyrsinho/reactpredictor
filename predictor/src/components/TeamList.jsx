@@ -1,4 +1,4 @@
-const TeamList = ({ teams, onDragStart}) => {
+const TeamList = ({ teams, onDragStart, onDragOver, onDrop, onDragLeave}) => {
 
     const tableStyle = {
         border: '1px solid #ddd',
@@ -19,9 +19,14 @@ const TeamList = ({ teams, onDragStart}) => {
                         border: '1px solid #ddd',
                     }
                     return (
-                        <tr style={rowColor} key={team.name}>
-                            <td>{index + 1}</td>
-                            <td onDragStart={event => onDragStart} draggable={"true"} style={teamCellStyle}>{team.name}</td>
+                        <tr className={"dropzone"} onDragOver={(event )=> onDragOver(event)} style={rowColor} key={team.name}>
+                            <td className={"dropzone"}>{index + 1}</td>
+                            <td className={"dropzone something"}
+                                onDragStart={event => onDragStart(event)}
+                                onDrop={(event )=> onDrop(event)}
+                                onDragLeave={(event )=> onDragLeave(event)}
+                                draggable={"true"}
+                                style={teamCellStyle}>{team.name}</td>
                         </tr>
                     );
                 })}
